@@ -24,17 +24,22 @@ python -m venv venv
 venv\scripts\activate
 ```
 
-## Step 5: Install the dependencies
+## Step 5: Get inside project folder
+```bash
+cd blood_donation
+```
+
+## Step 6: Install the dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-## Step 6: Run the server
+## Step 7: Run the server
 ```bash
 python manage.py runserver
 ```
 
-## Step 7: Copy paste this URL in the browser
+## Step 8: Copy paste this URL in the browser
 ```bash
 http://localhost:8000/login/
 ```
