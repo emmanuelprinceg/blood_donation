@@ -2,8 +2,8 @@
 
 ## Prerequisites
 Before you proceed, ensure you have the following installed on your system:
-- **Git**: Necessary for source code management and version control. You can download and install it from [Git SCM](https://git-scm.com/). Python 3.9 preferred.
-- **Python 3 and pip**: These are required to install the AWS CLI. Typically included in most systems, but you can download them from [Python's official website](https://www.python.org/downloads/) if not installed.
+- **Git**: Necessary for source code management and version control. You can download and install it from [Git SCM](https://git-scm.com/). 
+- **Python 3 and pip**: Typically included in most systems, but you can download them from [Python's official website](https://www.python.org/downloads/) if not installed. Python 3.9 preferred.
 
 ## Step 1: Open Your Terminal in a new folder
 Launch your terminal. On Windows, you might use Command Prompt or PowerShell, and on macOS or Linux, you can open the Terminal.
