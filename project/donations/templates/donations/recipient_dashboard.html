@@ -1,0 +1,51 @@
+<!-- donations/templates/donations/recipient_dashboard.html -->
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2>Available Donors in {{ request.user.recipientprofile.location }}</h2>
+        <h4 class="mt-4">Donors in Your Location</h4>
+
+        {% if donor_requests %}
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Donor Name</th>
+                        <th>Blood Type</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for donor_request in donor_requests %}
+                    <tr>
+                        <td>{{ donor_request.donor.user.username }}</td>
+                        <td>{{ donor_request.donor.blood_type }}</td>
+                        <td>{{ donor_request.donor.location }}</td>
+                        <td>
+                            {% if donor_request.request_exists %}
+                                {% with blood_request=donor_request.blood_request %}
+                                    {% if blood_request.status == 'waiting' %}
+                                        <button class="btn btn-warning" disabled>Waiting for Response</button>
+                                    {% elif blood_request.status == 'accepted' %}
+                                        <p>Accepted. Contact Donor: {{ blood_request.donor.phone_number }}</p>
+                                    {% endif %}
+                                {% endwith %}
+                            {% else %}
+                                <form method="post" action="{% url 'request_blood' donor_request.donor.user.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Request Blood</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No donors available in your location at the moment.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

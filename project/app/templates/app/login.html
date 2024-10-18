@@ -1,0 +1,18 @@
+<!-- users/templates/users/login.html -->
+{% extends 'app/base.html' %}
+
+
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center">Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">Login</button>
+        </form>
+        <p class="text-center mt-3">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+</div>
+{% endblock %}

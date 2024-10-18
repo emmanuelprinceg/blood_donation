@@ -1,0 +1,47 @@
+<!-- donations/templates/donations/donor_dashboard.html -->
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2>Donor Dashboard</h2>
+        <h4 class="mt-4">Blood Requests Sent to You</h4>
+
+        {% if blood_requests %}
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Recipient</th>
+                        <th>Blood Type Needed</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for request in blood_requests %}
+                    <tr>
+                        <td>{{ request.recipient.user.username }}</td>
+                        <td>{{ request.blood_type_needed }}</td>
+                        <td>{{ request.location }}</td>
+                        <td>{{ request.get_status_display }}</td>
+                        <td>
+                            {% if request.status == 'waiting' %}
+                                <form method="post" action="{% url 'accept_blood_request' request.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Accept Request</button>
+                                </form>
+                            {% elif request.status == 'accepted' %}
+                                <button class="btn btn-secondary" disabled>Request Accepted</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No requests available at the moment.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

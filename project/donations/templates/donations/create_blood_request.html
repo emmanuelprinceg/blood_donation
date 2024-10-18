@@ -1,0 +1,14 @@
+<!-- donations/templates/donations/create_blood_request.html -->
+{% extends 'app/base.html' %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Request Blood</h2>
+            <form method="post" class="form-blood-request">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-lg btn-danger btn-block mt-4" type="submit">Submit Request</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
